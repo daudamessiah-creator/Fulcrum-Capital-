@@ -3,116 +3,152 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark">
-<meta name="description" content="Fulcrum Capital sources investable ventures and raises capital for businesses in Abuja, deal by deal.">
 <title>Fulcrum Capital</title>
+<meta name="description" content="Fulcrum Capital sources investable ventures and raises capital for businesses, deal by deal.">
+<meta property="og:title" content="Fulcrum Capital">
+<meta property="og:description" content="We source investable ventures and raise capital for businesses, deal by deal.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%2317181b'/%3E%3Cg fill='none' stroke='%23d6d8dd' stroke-width='14' stroke-linecap='square'%3E%3Cpolyline points='194,72 440,72 440,290'/%3E%3Cpolyline points='72,222 72,440 318,440'/%3E%3C/g%3E%3Ctext x='256' y='326' font-family='Georgia,serif' font-size='210' text-anchor='middle' fill='%23ffffff'%3EC%3C/text%3E%3C/svg%3E">
 <style>
-:root{--bg:#17181b;--deep:#101113;--line:#2a2b2f;--gun:#4a4b50;--steel:#9a9ca3;--silver:#d6d8dd;--white:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+:root{--bg:#17181b;--bg2:#101113;--fg:#d6d8dd;--white:#fff;--muted:#9a9ca3;--line:#2a2b2f;--gun:#4a4b50;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--silver);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.65;font-size:17px;-webkit-text-size-adjust:100%}
-.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px}
 .serif{font-family:Georgia,"Times New Roman",serif}
-header{padding:22px 0}
-.mark{font-family:Georgia,"Times New Roman",serif;font-size:18px;letter-spacing:.3em;color:var(--silver)}
-.mark b{color:var(--white);font-weight:400}
-.mark small{display:block;font-size:8px;letter-spacing:.5em;color:var(--steel);margin-top:2px}
-.hero{padding:44px 0 72px}
-.frame{position:relative;padding:44px 28px}
-.frame:before,.frame:after{content:"";position:absolute;width:62%;height:62%;border:2px solid var(--silver);pointer-events:none}
-.frame:before{top:0;right:0;border-left:0;border-bottom:0}
-.frame:after{bottom:0;left:0;border-right:0;border-top:0}
-h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(34px,8vw,56px);line-height:1.12;color:var(--white);margin:0 0 20px;letter-spacing:.01em}
-.lead{font-size:19px;max-width:34em;margin:0 0 30px;color:var(--silver)}
-.btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;padding:15px 24px;border:1px solid var(--silver);color:var(--silver);text-decoration:none;font-size:16px;min-height:48px}
-.btn.main{background:var(--silver);color:var(--bg)}
-.btn:hover{border-color:var(--white);color:var(--white)}
-.btn.main:hover{background:var(--white);color:var(--bg)}
-a:focus-visible{outline:2px solid var(--white);outline-offset:3px}
-section{padding:56px 0;border-top:1px solid var(--line)}
-h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:28px;line-height:1.25;color:var(--white);margin:0 0 18px}
-p{margin:0 0 14px;max-width:34em}
-.two{display:grid;gap:36px}
-.two h3,.steps h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:21px;color:var(--white);margin:0 0 8px}
-.steps{list-style:none;margin:28px 0 0;padding:0;counter-reset:s}
-.steps li{counter-increment:s;position:relative;padding:0 0 28px 54px;margin:0}
-.steps li:before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;border:1px solid var(--gun);border-radius:50%;text-align:center;line-height:34px;font-family:Georgia,serif;color:var(--white)}
-.steps li:not(:last-child):after{content:"";position:absolute;left:18px;top:38px;bottom:4px;width:1px;background:var(--gun)}
-.steps p{margin:0}
-.note{background:var(--deep);border:1px solid var(--line);padding:22px 24px}
-.note p{font-size:15px;color:var(--steel);max-width:none}
-.note p:last-child{margin:0}
-.note strong{color:var(--silver);font-weight:500}
-.cta{text-align:left}
-footer{border-top:1px solid var(--line);padding:28px 0 44px;font-size:14px;color:var(--steel)}
-footer p{max-width:none;margin:0 0 6px}
-@media (min-width:700px){.two{grid-template-columns:1fr 1fr;gap:48px}.frame{padding:64px 56px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between}
+header a.cta{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);text-decoration:none;border:1px solid var(--gun);padding:8px 16px;border-radius:2px}
+header a.cta:hover{border-color:var(--fg)}
+.hero{padding:64px 0 56px;text-align:center}
+.hero svg.lockup{width:100%;max-width:400px;height:auto;display:block;margin:0 auto}
+.hero p.lead{font-family:Georgia,"Times New Roman",serif;font-size:clamp(22px,4.4vw,30px);line-height:1.4;color:var(--white);max-width:24ch;margin:30px auto 0}
+.hero p.sub{color:var(--muted);max-width:46ch;margin:16px auto 0}
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+section{padding:54px 0;border-top:1px solid var(--line)}
+.num{font-size:12px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(26px,4vw,32px);margin:6px 0 16px;color:var(--white)}
+h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 8px}
+p{margin:0 0 14px;max-width:62ch}
+.grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px}
+@media(min-width:680px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}}
+.card{border:1px solid var(--line);background:var(--bg2);border-radius:4px;padding:22px}
+.card .n{font-family:Georgia,serif;font-size:22px;color:var(--white);margin-bottom:6px;display:block}
+.card p{margin:0;color:var(--fg);font-size:15px}
+.risk{border-left:2px solid var(--gun);padding:2px 0 2px 18px;margin-top:22px;max-width:62ch;color:var(--muted)}
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:26px}
+@media(min-width:760px){.contact-grid{grid-template-columns:repeat(3,1fr)}}
+.contact{border:1px solid var(--line);background:var(--bg2);border-radius:4px;padding:24px 22px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.ico{width:46px;height:46px;border:1px solid var(--gun);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white)}
+.ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.contact h3{margin:0}
+.contact .addr{color:var(--white);font-size:15px;word-break:break-all;text-decoration:none;border-bottom:1px solid var(--gun)}
+.contact .addr:hover{border-color:var(--white)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--bg);text-decoration:none;font-size:14px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:13px 22px;border-radius:2px;border:1px solid var(--white);transition:background .15s,color .15s}
+.btn:hover{background:transparent;color:var(--white)}
+.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn.ghost{background:transparent;color:var(--white);border-color:var(--gun)}
+.btn.ghost:hover{border-color:var(--white)}
+.note{font-size:14px;color:var(--muted);margin-top:22px}
+footer{border-top:1px solid var(--line);padding:30px 0 44px;font-size:13px;color:var(--muted)}
+footer p{max-width:70ch;margin:0 0 10px}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="mark">FUL<b>C</b>RUM<small>CAPITAL</small></div>
+    <svg viewBox="0 0 200 56" width="120" role="img" aria-label="Fulcrum Capital"><text x="103" y="30" font-family="Georgia,'Times New Roman',serif" font-size="22" letter-spacing="6" text-anchor="middle" fill="#d6d8dd">FUL<tspan fill="#ffffff">C</tspan>RUM</text><text x="102.5" y="46" font-family="Georgia,'Times New Roman',serif" font-size="7" letter-spacing="5" text-anchor="middle" fill="#9a9ca3">CAPITAL</text></svg>
+    <a class="cta" href="#contact">Contact</a>
   </div>
 </header>
 
 <main>
-<div class="wrap hero">
-  <div class="frame">
-    <h1>Capital for businesses worth backing.</h1>
-    <p class="lead">Fulcrum Capital sources investable ventures in Abuja and introduces them to investors who want to put money into a specific deal, one deal at a time.</p>
-    <div class="btns">
-      <a class="btn main" id="wa" href="#contact">Message us on WhatsApp</a>
-      <a class="btn" id="mail" href="#contact">Send an email</a>
+<div class="hero">
+  <div class="wrap">
+    <svg class="lockup" viewBox="0 0 380 340" role="img" aria-label="Fulcrum Capital logo"><g fill="none" stroke="#d6d8dd" stroke-width="2" stroke-linecap="square"><polyline points="150,40 320,40 320,190"/><polyline points="60,150 60,300 230,300"/></g><g font-family="Georgia,'Times New Roman',serif" font-size="26" text-anchor="middle" fill="#d6d8dd"><text x="100" y="166">F</text><text x="130" y="166">U</text><text x="160" y="166">L</text><text x="190" y="166" fill="#ffffff">C</text><text x="220" y="166">R</text><text x="250" y="166">U</text><text x="280" y="166">M</text></g><text x="193.5" y="196" font-family="Georgia,'Times New Roman',serif" font-size="11" letter-spacing="7" text-anchor="middle" fill="#9a9ca3">CAPITAL</text></svg>
+    <p class="lead">We source investable ventures and raise capital for businesses, deal by deal.</p>
+    <p class="sub">Each deal is sourced, structured and presented on its own merits. Investors put money directly into the venture. Fulcrum does not pool or hold investor funds.</p>
+    <div class="btnrow">
+      <a class="btn" href="#contact">Get in touch</a>
+      <a class="btn ghost" href="#how">How it works</a>
     </div>
   </div>
 </div>
 
-<section>
-  <div class="wrap two">
-    <div>
-      <h2>For investors</h2>
-      <p>You invest directly in a venture, under its own terms. Each deal is sourced, checked and structured before it reaches you.</p>
-      <p>You receive the terms, the figures and the risks in writing, and you can meet the founder before you decide.</p>
-    </div>
-    <div>
-      <h2>For business owners</h2>
-      <p>If your business already earns money and needs capital to grow, we can structure the raise and present it to investors on its own merits.</p>
-      <p>We start with established businesses that are plain and easy to understand.</p>
+<section id="about">
+  <div class="wrap">
+    <div class="num">01</div>
+    <h2>What Fulcrum is</h2>
+    <p>A dealmaker firm. Fulcrum finds ventures worth an investor's money and connects them with the capital to grow.</p>
+    <p>A fulcrum is the point a lever turns on. That is the role: the point where a good business and the right capital meet.</p>
+    <div class="grid two">
+      <div class="card"><h3>Investors</h3><p>Vetted opportunities, with the terms and the risks in front of you before any decision. Investors may be based anywhere, in Nigeria or abroad.</p></div>
+      <div class="card"><h3>Business owners</h3><p>A credible, structured route to capital, and an introduction to investors who can back a venture on its own terms.</p></div>
     </div>
   </div>
 </section>
 
-<section>
+<section id="how">
   <div class="wrap">
-    <h2>How a deal works</h2>
-    <ol class="steps">
-      <li><h3>Source</h3><p>We find a business with real trading history and a clear need for capital.</p></li>
-      <li><h3>Structure</h3><p>We set out the amount sought, the terms, the use of the money and the risks.</p></li>
-      <li><h3>Introduce</h3><p>We present the deal to investors and arrange a meeting with the founder. Investors take their time to decide.</p></li>
-    </ol>
+    <div class="num">02</div>
+    <h2>How it works</h2>
+    <p>One deal at a time.</p>
+    <div class="grid three">
+      <div class="card"><span class="n">01</span><p>Fulcrum sources and examines a venture.</p></div>
+      <div class="card"><span class="n">02</span><p>The deal is structured and written up, with the risks stated plainly.</p></div>
+      <div class="card"><span class="n">03</span><p>Interested investors review the terms, meet the founder and decide at their own pace.</p></div>
+    </div>
   </div>
 </section>
 
-<section>
+<section id="start">
   <div class="wrap">
-    <div class="note">
-      <p><strong>Fulcrum does not hold or pool investor funds.</strong> Money goes directly into the venture an investor chooses.</p>
-      <p>All investments carry risk, including loss of capital. Nothing on this page is an offer to sell or a solicitation to buy any security, and nothing here is a promise or guarantee of any return. Investors should take independent legal, tax and financial advice before deciding.</p>
-    </div>
+    <div class="num">03</div>
+    <h2>Where it starts</h2>
+    <p>With established, cash-generating businesses: plain, understandable and unglamorous. Fulcrum builds a record of closed deals there before it takes on anything larger.</p>
+  </div>
+</section>
+
+<section id="risk">
+  <div class="wrap">
+    <div class="num">04</div>
+    <h2>Risk</h2>
+    <p>Every investment carries risk, including the loss of capital. Nothing on this page is a promise or a guarantee of any return. Each deal is presented with its own risks, set out before any next step.</p>
   </div>
 </section>
 
 <section id="contact">
-  <div class="wrap cta">
-    <h2>Start a conversation</h2>
+  <div class="wrap">
+    <div class="num">05</div>
+    <h2>Contact</h2>
     <p>Tell us whether you are an investor or a business owner. We reply within a day.</p>
-    <div class="btns">
-      <a class="btn main" id="wa2" href="#contact">Message us on WhatsApp</a>
-      <a class="btn" id="mail2" href="#contact">Send an email</a>
+
+    <div class="contact-grid">
+      <div class="contact">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2z"/></svg></div>
+        <h3>Telegram</h3>
+        <a class="btn" href="https://t.me/+Qc7tFuncimdhYTJk" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2z"/></svg>Telegram
+        </a>
+      </div>
+
+      <div class="contact">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
+        <h3>WhatsApp</h3>
+        <a class="btn" href="https://wa.me/message/PR5QSX7VJ7TSF1" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>WhatsApp
+        </a>
+      </div>
+
+      <div class="contact">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+        <h3>Email</h3>
+        <a class="addr" href="mailto:fulcrumcapitals@gmail.com">fulcrumcapitals@gmail.com</a>
+        <a class="btn" href="mailto:fulcrumcapitals@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Email us
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -120,20 +156,10 @@ footer p{max-width:none;margin:0 0 6px}
 
 <footer>
   <div class="wrap">
-    <p class="serif">Fulcrum Capital · Abuja, Nigeria</p>
-    <p>Confidential enquiries are never shared or named without permission.</p>
+    <p class="serif" style="letter-spacing:.2em;color:var(--fg)">FULCRUM CAPITAL</p>
+    <p>This page is for information only and is not an offer to sell or a solicitation to buy any security. All investments carry risk, including loss of capital. Investors should take independent legal, tax and financial advice before deciding.</p>
   </div>
 </footer>
 
-<script>
-/* Fill these in, then the buttons go live. WhatsApp number: digits only, with country code. */
-var WHATSAPP = "2349051113743";
-var EMAIL = "fulcrumcapitals@gmail.com";
-var msg = encodeURIComponent("Hello Fulcrum Capital, I would like to learn more.");
-var wa = "https://wa.me/" + WHATSAPP + "?text=" + msg;
-var ml = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Enquiry for Fulcrum Capital");
-["wa","wa2"].forEach(function(i){document.getElementById(i).href = wa;});
-["mail","mail2"].forEach(function(i){document.getElementById(i).href = ml;});
-</script>
 </body>
 </html>
