@@ -5,149 +5,354 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fulcrum Capital</title>
 <meta name="description" content="Fulcrum Capital sources investable ventures and raises capital for businesses, deal by deal.">
+<meta name="theme-color" content="#17181b">
 <meta property="og:title" content="Fulcrum Capital">
 <meta property="og:description" content="We source investable ventures and raise capital for businesses, deal by deal.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%2317181b'/%3E%3Cg fill='none' stroke='%23d6d8dd' stroke-width='14' stroke-linecap='square'%3E%3Cpolyline points='194,72 440,72 440,290'/%3E%3Cpolyline points='72,222 72,440 318,440'/%3E%3C/g%3E%3Ctext x='256' y='326' font-family='Georgia,serif' font-size='210' text-anchor='middle' fill='%23ffffff'%3EC%3C/text%3E%3C/svg%3E">
 <style>
-:root{--bg:#17181b;--bg2:#101113;--fg:#d6d8dd;--white:#fff;--muted:#9a9ca3;--line:#2a2b2f;--gun:#4a4b50;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+/* ---------- Brand tokens (unchanged) + extended system ---------- */
+:root{
+  --bg:#17181b;--bg2:#101113;--fg:#d6d8dd;--white:#fff;--muted:#9a9ca3;--line:#2a2b2f;--gun:#4a4b50;
+  /* extensions derived from the brand palette */
+  --glass:rgba(214,216,221,.045);
+  --glass-strong:rgba(214,216,221,.08);
+  --glass-edge:rgba(214,216,221,.14);
+  --glass-hi:rgba(255,255,255,.22);
+  --shadow:0 30px 60px -30px rgba(0,0,0,.75),0 12px 24px -16px rgba(0,0,0,.6);
+  --chrome:linear-gradient(135deg,#ffffff 0%,#d6d8dd 38%,#8d9097 62%,#d6d8dd 100%);
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --r-lg:28px;--r-md:20px;--pill:999px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(88px + env(safe-area-inset-top,0px))}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%}
-.wrap{max-width:900px;margin:0 auto;padding:0 22px}
-.serif{font-family:Georgia,"Times New Roman",serif}
-header{padding:20px 0;border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between}
-header a.cta{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);text-decoration:none;border:1px solid var(--gun);padding:8px 16px;border-radius:2px}
-header a.cta:hover{border-color:var(--fg)}
-.hero{padding:64px 0 56px;text-align:center}
-.hero svg.lockup{width:100%;max-width:400px;height:auto;display:block;margin:0 auto}
-.hero p.lead{font-family:Georgia,"Times New Roman",serif;font-size:clamp(22px,4.4vw,30px);line-height:1.4;color:var(--white);max-width:24ch;margin:30px auto 0}
-.hero p.sub{color:var(--muted);max-width:46ch;margin:16px auto 0}
-.btnrow{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
-section{padding:54px 0;border-top:1px solid var(--line)}
-.num{font-size:12px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
-h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(26px,4vw,32px);margin:6px 0 16px;color:var(--white)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--fg);color:var(--bg)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+.serif{font-family:var(--serif)}
+
+/* ---------- Atmosphere: layered background ---------- */
+.atmos{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:
+  radial-gradient(1100px 700px at 78% -10%,rgba(214,216,221,.10),transparent 60%),
+  radial-gradient(900px 600px at -10% 30%,rgba(154,156,163,.07),transparent 60%),
+  radial-gradient(800px 700px at 50% 120%,rgba(255,255,255,.05),transparent 60%),
+  linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.atmos::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:72px 72px;opacity:.35;
+  -webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 20%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse 70% 55% at 50% 20%,#000 0%,transparent 75%)}
+.atmos::after{content:"";position:absolute;inset:-50%;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- Glass primitive ---------- */
+.glass{position:relative;background:linear-gradient(160deg,var(--glass-strong),var(--glass) 60%);
+  border:1px solid var(--glass-edge);border-radius:var(--r-md);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),var(--shadow)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(140deg,var(--glass-hi),transparent 35%,transparent 70%,rgba(255,255,255,.08));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:50;padding:14px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 20px;border-radius:var(--pill);transition:background .3s,border-color .3s}
+header.scrolled .nav{background:rgba(23,24,27,.6);border-color:var(--glass-edge)}
+.nav{background:rgba(23,24,27,.25);border:1px solid transparent;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%)}
+.brand{display:block;line-height:0}
+.links{display:none;gap:4px;list-style:none;margin:0;padding:0}
+.links a{display:block;font-size:13px;letter-spacing:.08em;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:var(--pill);transition:color .2s,background .2s}
+.links a:hover{color:var(--white);background:var(--glass-strong)}
+@media(min-width:820px){.links{display:flex}}
+
+/* ---------- Buttons: pill shaped ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--white);color:var(--bg);text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:14px 26px;border-radius:var(--pill);border:1px solid var(--white);
+  box-shadow:0 10px 30px -10px rgba(255,255,255,.35),inset 0 -2px 0 rgba(0,0,0,.08);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .2s,color .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(255,255,255,.45),inset 0 -2px 0 rgba(0,0,0,.08)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s var(--ease)}
+.btn:hover svg.arrow{transform:translateX(3px)}
+.btn.ghost{background:var(--glass);color:var(--white);border-color:var(--glass-edge);box-shadow:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.btn.ghost:hover{border-color:var(--fg);background:var(--glass-strong)}
+.btn.sm{padding:10px 18px;font-size:12px}
+.btn.block{width:100%}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:56px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
+@media(min-width:960px){.hero{padding:72px 0 110px}.hero .wrap{grid-template-columns:1.05fr .95fr;gap:40px}}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);padding:7px 14px 7px 8px;border-radius:var(--pill)}
+.eyebrow .dot{width:20px;height:20px;border-radius:50%;background:var(--chrome);box-shadow:0 0 0 4px rgba(214,216,221,.08)}
+.hero h1{font-family:var(--serif);font-weight:400;color:var(--white);font-size:clamp(36px,6.2vw,66px);line-height:1.06;letter-spacing:-.015em;margin:22px 0 0;max-width:15ch}
+.hero h1 em{font-style:italic;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{color:var(--muted);font-size:17px;max-width:48ch;margin:22px 0 0}
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:40px 0 0;padding:0;list-style:none}
+.facts li{font-size:13px;color:var(--fg);padding:8px 14px;border-radius:var(--pill);display:flex;align-items:center;gap:8px}
+.facts li svg{width:14px;height:14px;fill:none;stroke:var(--white);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Hero stage — floating glass, orbs and a balancing lever */
+.stage{position:relative;aspect-ratio:1/1.02;width:100%;max-width:520px;margin:0 auto;perspective:1200px}
+.stage .panel{position:absolute;inset:8% 6%;border-radius:var(--r-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transform:rotateX(6deg) rotateY(-8deg);transform-style:preserve-3d;transition:transform .6s var(--ease)}
+.stage .panel::after{content:"";position:absolute;width:140%;height:60%;top:-30%;left:-20%;background:radial-gradient(closest-side,rgba(255,255,255,.12),transparent);pointer-events:none}
+.stage svg.lockup{width:72%;max-width:300px;height:auto;display:block;position:relative;z-index:1}
+.lever{position:relative;width:70%;height:90px;margin-top:6px;z-index:1}
+.lever .beam{position:absolute;left:0;right:0;top:22px;height:8px;border-radius:8px;background:var(--chrome);box-shadow:0 6px 18px rgba(0,0,0,.5);transform-origin:50% 50%;animation:balance 7s ease-in-out infinite}
+.lever .beam::before,.lever .beam::after{content:"";position:absolute;bottom:6px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0%,#d6d8dd 22%,#6d7076 62%,#1b1c1f 100%);box-shadow:0 8px 16px rgba(0,0,0,.45)}
+.lever .beam::before{left:6%;width:30px;height:30px}
+.lever .beam::after{right:6%;width:22px;height:22px}
+.lever .pivot{position:absolute;left:50%;top:30px;width:56px;height:46px;transform:translateX(-50%);background:linear-gradient(180deg,#d6d8dd,#4a4b50);clip-path:polygon(50% 0,100% 100%,0 100%);filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+.lever .base{position:absolute;left:50%;top:78px;width:120px;height:6px;transform:translateX(-50%);border-radius:6px;background:radial-gradient(closest-side,rgba(0,0,0,.6),transparent)}
+@keyframes balance{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+
+.orb{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 28%,#ffffff 0%,#e4e6ea 14%,#9a9ca3 45%,#3a3b40 78%,#17181b 100%);box-shadow:inset -10px -14px 30px rgba(0,0,0,.45),0 30px 50px -20px rgba(0,0,0,.8);animation:float 9s ease-in-out infinite}
+.orb.o1{width:110px;height:110px;top:0;right:2%;animation-delay:-2s}
+.orb.o2{width:58px;height:58px;bottom:6%;left:0;animation-delay:-5s;animation-duration:11s}
+.orb.o3{width:26px;height:26px;top:22%;left:2%;animation-duration:7s;opacity:.85}
+.ring{position:absolute;width:150px;height:150px;bottom:-2%;right:-2%;border-radius:50%;border:10px solid transparent;background:var(--chrome) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;transform:rotateX(64deg) rotateZ(20deg);animation:spin 26s linear infinite}
+@keyframes float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-18px,0)}}
+@keyframes spin{to{transform:rotateX(64deg) rotateZ(380deg)}}
+.chip{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:var(--pill);font-size:13px;color:var(--white);white-space:nowrap;animation:float 10s ease-in-out infinite}
+.chip .ci{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--glass-strong);border:1px solid var(--glass-edge)}
+.chip .ci svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.chip.c1{top:12%;left:-2%;animation-delay:-3s}
+.chip.c2{bottom:12%;right:-1%;animation-delay:-6s}
+@media(max-width:520px){.chip{font-size:12px}.chip.c1{left:0}.chip.c2{right:0}.orb.o1{width:80px;height:80px}.ring{width:110px;height:110px}}
+
+/* ---------- Sections ---------- */
+section{position:relative;padding:88px 0}
+.head{display:flex;flex-direction:column;gap:6px;margin-bottom:34px;max-width:720px}
+.num{display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+.num::after{content:"";width:46px;height:1px;background:linear-gradient(90deg,var(--gun),transparent)}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.4vw,46px);line-height:1.12;letter-spacing:-.01em;margin:6px 0 10px;color:var(--white)}
 h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 8px}
 p{margin:0 0 14px;max-width:62ch}
-.grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px}
-@media(min-width:680px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}}
-.card{border:1px solid var(--line);background:var(--bg2);border-radius:4px;padding:22px}
-.card .n{font-family:Georgia,serif;font-size:22px;color:var(--white);margin-bottom:6px;display:block}
-.card p{margin:0;color:var(--fg);font-size:15px}
-.risk{border-left:2px solid var(--gun);padding:2px 0 2px 18px;margin-top:22px;max-width:62ch;color:var(--muted)}
-/* contact */
-.contact-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:26px}
+.head p{color:var(--fg);font-size:17px}
+.grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:720px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}}
+
+.card{padding:30px 28px;border-radius:var(--r-md);transition:transform .35s var(--ease),border-color .35s,background .35s}
+.card.glass:hover{transform:translateY(-4px);border-color:rgba(214,216,221,.26)}
+.card p{margin:0;color:var(--fg);font-size:15.5px}
+.card .n{font-family:var(--serif);font-size:44px;line-height:1;margin-bottom:22px;display:block;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card .badge{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;color:var(--white);background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.02));border:1px solid var(--glass-edge);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.card .badge svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card h3{color:var(--white);font-family:var(--serif);font-size:22px;letter-spacing:0;text-transform:none;font-weight:400;margin-bottom:10px}
+
+/* About: quote panel */
+.about-grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:960px){.about-grid{grid-template-columns:1fr 1.25fr;align-items:stretch}}
+.quote{padding:34px 30px;border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:26px}
+.quote p{font-family:var(--serif);color:var(--white);font-size:clamp(20px,2.4vw,24px);line-height:1.45;margin:0}
+.quote .mini{display:flex;align-items:flex-end;gap:16px;color:var(--muted);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.quote .mini svg{width:84px;height:auto;flex:none}
+.quote::after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18),transparent 65%);pointer-events:none}
+
+/* Steps */
+.steps{position:relative}
+@media(min-width:720px){.steps::before{content:"";position:absolute;left:8%;right:8%;top:58px;height:1px;background:linear-gradient(90deg,transparent,var(--gun) 15%,var(--gun) 85%,transparent);z-index:-1}}
+
+/* Bento: Start + Risk */
+.bento{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:960px){.bento{grid-template-columns:1.2fr 1fr}}
+.tile{padding:40px 34px;border-radius:var(--r-lg);overflow:hidden}
+.tile h2{font-size:clamp(28px,3.4vw,38px)}
+.tile p{color:var(--fg)}
+.tile .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tile .tags span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg);padding:7px 14px;border-radius:var(--pill);border:1px solid var(--glass-edge);background:var(--glass)}
+.tile.start::after{content:"";position:absolute;right:-40px;bottom:-40px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.35),rgba(154,156,163,.15) 40%,transparent 70%);filter:blur(2px);pointer-events:none}
+.tile.risk{background:linear-gradient(160deg,rgba(16,17,19,.7),rgba(16,17,19,.4))}
+.tile.risk .warn{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--white);padding:7px 14px 7px 8px;border-radius:var(--pill);border:1px solid var(--gun);margin-bottom:18px}
+.tile.risk .warn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tile.risk p{border-left:2px solid var(--gun);padding-left:18px;color:var(--muted)}
+
+/* ---------- Contact ---------- */
+.contact-shell{padding:48px 30px;border-radius:calc(var(--r-lg) + 6px);overflow:hidden}
+@media(min-width:760px){.contact-shell{padding:64px 56px}}
+.contact-shell::after{content:"";position:absolute;inset:auto -10% -60% -10%;height:80%;background:radial-gradient(closest-side,rgba(214,216,221,.12),transparent);pointer-events:none}
+.contact-shell .head{margin-left:auto;margin-right:auto;text-align:center;align-items:center}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:16px;position:relative;z-index:1}
 @media(min-width:760px){.contact-grid{grid-template-columns:repeat(3,1fr)}}
-.contact{border:1px solid var(--line);background:var(--bg2);border-radius:4px;padding:24px 22px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.ico{width:46px;height:46px;border:1px solid var(--gun);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white)}
+.contact{padding:26px 24px;border-radius:var(--r-md);display:flex;flex-direction:column;align-items:flex-start;gap:16px;background:rgba(16,17,19,.45);transition:transform .35s var(--ease),border-color .35s}
+.contact.glass:hover{transform:translateY(-4px);border-color:rgba(214,216,221,.26)}
+.ico{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.02));border:1px solid var(--glass-edge);box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
 .ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.contact h3{margin:0}
-.contact .addr{color:var(--white);font-size:15px;word-break:break-all;text-decoration:none;border-bottom:1px solid var(--gun)}
-.contact .addr:hover{border-color:var(--white)}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--bg);text-decoration:none;font-size:14px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:13px 22px;border-radius:2px;border:1px solid var(--white);transition:background .15s,color .15s}
-.btn:hover{background:transparent;color:var(--white)}
-.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.btn.ghost{background:transparent;color:var(--white);border-color:var(--gun)}
-.btn.ghost:hover{border-color:var(--white)}
-.note{font-size:14px;color:var(--muted);margin-top:22px}
-footer{border-top:1px solid var(--line);padding:30px 0 44px;font-size:13px;color:var(--muted)}
+.contact h3{margin:0;color:var(--white);font-family:var(--serif);font-size:22px;letter-spacing:0;text-transform:none;font-weight:400}
+.contact .addr{color:var(--fg);font-size:14.5px;word-break:break-all;text-decoration:none;border-bottom:1px solid var(--gun)}
+.contact .addr:hover{color:var(--white);border-color:var(--white)}
+.contact .btn{margin-top:auto}
+
+/* ---------- Footer ---------- */
+footer{padding:20px 0 44px;font-size:13px;color:var(--muted)}
+footer .inner{border-top:1px solid var(--line);padding-top:30px;display:grid;gap:18px}
+@media(min-width:760px){footer .inner{grid-template-columns:auto 1fr;gap:48px;align-items:start}}
 footer p{max-width:70ch;margin:0 0 10px}
+
+/* ---------- Motion ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease),border-color .35s}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .glass{background:var(--bg2)}
+}
 </style>
 </head>
 <body>
+<div class="atmos" aria-hidden="true"></div>
 
-<header>
+<header id="top">
   <div class="wrap">
-    <svg viewBox="0 0 200 56" width="120" role="img" aria-label="Fulcrum Capital"><text x="103" y="30" font-family="Georgia,'Times New Roman',serif" font-size="22" letter-spacing="6" text-anchor="middle" fill="#d6d8dd">FUL<tspan fill="#ffffff">C</tspan>RUM</text><text x="102.5" y="46" font-family="Georgia,'Times New Roman',serif" font-size="7" letter-spacing="5" text-anchor="middle" fill="#9a9ca3">CAPITAL</text></svg>
-    <a class="cta" href="#contact">Contact</a>
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Fulcrum Capital — home"><svg viewBox="0 0 200 56" width="120" role="img" aria-label="Fulcrum Capital"><text x="103" y="30" font-family="Georgia,'Times New Roman',serif" font-size="22" letter-spacing="6" text-anchor="middle" fill="#d6d8dd">FUL<tspan fill="#ffffff">C</tspan>RUM</text><text x="102.5" y="46" font-family="Georgia,'Times New Roman',serif" font-size="7" letter-spacing="5" text-anchor="middle" fill="#9a9ca3">CAPITAL</text></svg></a>
+      <ul class="links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#start">Where it starts</a></li>
+        <li><a href="#risk">Risk</a></li>
+      </ul>
+      <a class="btn sm" href="#contact">Contact</a>
+    </nav>
   </div>
 </header>
 
 <main>
 <div class="hero">
   <div class="wrap">
-    <svg class="lockup" viewBox="0 0 380 340" role="img" aria-label="Fulcrum Capital logo"><g fill="none" stroke="#d6d8dd" stroke-width="2" stroke-linecap="square"><polyline points="150,40 320,40 320,190"/><polyline points="60,150 60,300 230,300"/></g><g font-family="Georgia,'Times New Roman',serif" font-size="26" text-anchor="middle" fill="#d6d8dd"><text x="100" y="166">F</text><text x="130" y="166">U</text><text x="160" y="166">L</text><text x="190" y="166" fill="#ffffff">C</text><text x="220" y="166">R</text><text x="250" y="166">U</text><text x="280" y="166">M</text></g><text x="193.5" y="196" font-family="Georgia,'Times New Roman',serif" font-size="11" letter-spacing="7" text-anchor="middle" fill="#9a9ca3">CAPITAL</text></svg>
-    <p class="lead">We source investable ventures and raise capital for businesses, deal by deal.</p>
-    <p class="sub">Each deal is sourced, structured and presented on its own merits. Investors put money directly into the venture. Fulcrum does not pool or hold investor funds.</p>
-    <div class="btnrow">
-      <a class="btn" href="#contact">Get in touch</a>
-      <a class="btn ghost" href="#how">How it works</a>
+    <div class="copy">
+      <span class="eyebrow glass reveal"><span class="dot" aria-hidden="true"></span>Deal by deal</span>
+      <h1 class="reveal d1">We source investable ventures and raise capital for businesses, <em>deal by deal.</em></h1>
+      <p class="sub reveal d2">Each deal is sourced, structured and presented on its own merits. Investors put money directly into the venture. Fulcrum does not pool or hold investor funds.</p>
+      <div class="btnrow reveal d3">
+        <a class="btn" href="#contact">Get in touch <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        <a class="btn ghost" href="#how">How it works</a>
+      </div>
+      <ul class="facts reveal d3" aria-label="Key points">
+        <li class="glass"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Direct into the venture</li>
+        <li class="glass"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No pooled funds</li>
+        <li class="glass"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Risks stated plainly</li>
+      </ul>
+    </div>
+
+    <div class="stage reveal d2" id="stage" aria-hidden="true">
+      <div class="orb o1"></div>
+      <div class="orb o3"></div>
+      <div class="ring"></div>
+      <div class="panel glass" id="panel">
+        <svg class="lockup" viewBox="0 0 380 340" role="img" aria-label="Fulcrum Capital logo"><g fill="none" stroke="#d6d8dd" stroke-width="2" stroke-linecap="square"><polyline points="150,40 320,40 320,190"/><polyline points="60,150 60,300 230,300"/></g><g font-family="Georgia,'Times New Roman',serif" font-size="26" text-anchor="middle" fill="#d6d8dd"><text x="100" y="166">F</text><text x="130" y="166">U</text><text x="160" y="166">L</text><text x="190" y="166" fill="#ffffff">C</text><text x="220" y="166">R</text><text x="250" y="166">U</text><text x="280" y="166">M</text></g><text x="193.5" y="196" font-family="Georgia,'Times New Roman',serif" font-size="11" letter-spacing="7" text-anchor="middle" fill="#9a9ca3">CAPITAL</text></svg>
+        <div class="lever"><div class="beam"></div><div class="pivot"></div><div class="base"></div></div>
+      </div>
+      <div class="orb o2"></div>
+      <div class="chip glass c1"><span class="ci"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>Vetted opportunities</div>
+      <div class="chip glass c2"><span class="ci"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>Capital to grow</div>
     </div>
   </div>
 </div>
 
 <section id="about">
   <div class="wrap">
-    <div class="num">01</div>
-    <h2>What Fulcrum is</h2>
-    <p>A dealmaker firm. Fulcrum finds ventures worth an investor's money and connects them with the capital to grow.</p>
-    <p>A fulcrum is the point a lever turns on. That is the role: the point where a good business and the right capital meet.</p>
-    <div class="grid two">
-      <div class="card"><h3>Investors</h3><p>Vetted opportunities, with the terms and the risks in front of you before any decision. Investors may be based anywhere, in Nigeria or abroad.</p></div>
-      <div class="card"><h3>Business owners</h3><p>A credible, structured route to capital, and an introduction to investors who can back a venture on its own terms.</p></div>
+    <div class="head reveal">
+      <div class="num">01</div>
+      <h2>What Fulcrum is</h2>
+      <p>A dealmaker firm. Fulcrum finds ventures worth an investor's money and connects them with the capital to grow.</p>
+    </div>
+    <div class="about-grid">
+      <div class="quote glass reveal">
+        <p>A fulcrum is the point a lever turns on. That is the role: the point where a good business and the right capital meet.</p>
+        <div class="mini" aria-hidden="true">
+          <svg viewBox="0 0 84 40"><rect x="2" y="8" width="80" height="3" rx="1.5" fill="#d6d8dd" transform="rotate(-4 42 9.5)"/><polygon points="42,12 52,34 32,34" fill="#4a4b50" stroke="#9a9ca3" stroke-width="1"/></svg>
+          The point of balance
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card glass reveal d1">
+          <div class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Investors</h3>
+          <p>Vetted opportunities, with the terms and the risks in front of you before any decision. Investors may be based anywhere, in Nigeria or abroad.</p>
+        </div>
+        <div class="card glass reveal d2">
+          <div class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
+          <h3>Business owners</h3>
+          <p>A credible, structured route to capital, and an introduction to investors who can back a venture on its own terms.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="how">
   <div class="wrap">
-    <div class="num">02</div>
-    <h2>How it works</h2>
-    <p>One deal at a time.</p>
-    <div class="grid three">
-      <div class="card"><span class="n">01</span><p>Fulcrum sources and examines a venture.</p></div>
-      <div class="card"><span class="n">02</span><p>The deal is structured and written up, with the risks stated plainly.</p></div>
-      <div class="card"><span class="n">03</span><p>Interested investors review the terms, meet the founder and decide at their own pace.</p></div>
+    <div class="head reveal">
+      <div class="num">02</div>
+      <h2>How it works</h2>
+      <p>One deal at a time.</p>
+    </div>
+    <div class="grid three steps">
+      <div class="card glass reveal"><span class="n">01</span><p>Fulcrum sources and examines a venture.</p></div>
+      <div class="card glass reveal d1"><span class="n">02</span><p>The deal is structured and written up, with the risks stated plainly.</p></div>
+      <div class="card glass reveal d2"><span class="n">03</span><p>Interested investors review the terms, meet the founder and decide at their own pace.</p></div>
     </div>
   </div>
 </section>
 
-<section id="start">
-  <div class="wrap">
-    <div class="num">03</div>
-    <h2>Where it starts</h2>
-    <p>With established, cash-generating businesses: plain, understandable and unglamorous. Fulcrum builds a record of closed deals there before it takes on anything larger.</p>
-  </div>
-</section>
-
-<section id="risk">
-  <div class="wrap">
-    <div class="num">04</div>
-    <h2>Risk</h2>
-    <p>Every investment carries risk, including the loss of capital. Nothing on this page is a promise or a guarantee of any return. Each deal is presented with its own risks, set out before any next step.</p>
+<section id="start-risk" style="padding-top:40px">
+  <div class="wrap bento">
+    <div class="tile glass start reveal" id="start">
+      <div class="num">03</div>
+      <h2>Where it starts</h2>
+      <p>With established, cash-generating businesses: plain, understandable and unglamorous. Fulcrum builds a record of closed deals there before it takes on anything larger.</p>
+      <div class="tags"><span>Established</span><span>Cash-generating</span><span>Understandable</span></div>
+    </div>
+    <div class="tile glass risk reveal d1" id="risk">
+      <div class="num">04</div>
+      <h2>Risk</h2>
+      <span class="warn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Read before investing</span>
+      <p>Every investment carries risk, including the loss of capital. Nothing on this page is a promise or a guarantee of any return. Each deal is presented with its own risks, set out before any next step.</p>
+    </div>
   </div>
 </section>
 
 <section id="contact">
   <div class="wrap">
-    <div class="num">05</div>
-    <h2>Contact</h2>
-    <p>Tell us whether you are an investor or a business owner. We reply within a day.</p>
-
-    <div class="contact-grid">
-      <div class="contact">
-        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2z"/></svg></div>
-        <h3>Telegram</h3>
-        <a class="btn" href="https://t.me/+Qc7tFuncimdhYTJk" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2z"/></svg>Telegram
-        </a>
+    <div class="contact-shell glass reveal">
+      <div class="head">
+        <div class="num">05</div>
+        <h2>Contact</h2>
+        <p>Tell us whether you are an investor or a business owner. We reply within a day.</p>
       </div>
 
-      <div class="contact">
-        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
-        <h3>WhatsApp</h3>
-        <a class="btn" href="https://wa.me/message/PR5QSX7VJ7TSF1" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>WhatsApp
-        </a>
-      </div>
+      <div class="contact-grid">
+        <div class="contact glass reveal">
+          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2z"/></svg></div>
+          <h3>Telegram</h3>
+          <a class="btn block" href="https://t.me/+Qc7tFuncimdhYTJk" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2z"/></svg>Telegram
+          </a>
+        </div>
 
-      <div class="contact">
-        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
-        <h3>Email</h3>
-        <a class="addr" href="mailto:fulcrumcapitals@gmail.com">fulcrumcapitals@gmail.com</a>
-        <a class="btn" href="mailto:fulcrumcapitals@gmail.com">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Email us
-        </a>
+        <div class="contact glass reveal d1">
+          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
+          <h3>WhatsApp</h3>
+          <a class="btn block" href="https://wa.me/message/PR5QSX7VJ7TSF1" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>WhatsApp
+          </a>
+        </div>
+
+        <div class="contact glass reveal d2">
+          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+          <h3>Email</h3>
+          <a class="addr" href="mailto:fulcrumcapitals@gmail.com">fulcrumcapitals@gmail.com</a>
+          <a class="btn block" href="mailto:fulcrumcapitals@gmail.com">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Email us
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -156,10 +361,38 @@ footer p{max-width:70ch;margin:0 0 10px}
 
 <footer>
   <div class="wrap">
-    <p class="serif" style="letter-spacing:.2em;color:var(--fg)">FULCRUM CAPITAL</p>
-    <p>This page is for information only and is not an offer to sell or a solicitation to buy any security. All investments carry risk, including loss of capital. Investors should take independent legal, tax and financial advice before deciding.</p>
+    <div class="inner">
+      <p class="serif" style="letter-spacing:.2em;color:var(--fg)">FULCRUM CAPITAL</p>
+      <p>This page is for information only and is not an offer to sell or a solicitation to buy any security. All investments carry risk, including loss of capital. Investors should take independent legal, tax and financial advice before deciding.</p>
+    </div>
   </div>
 </footer>
 
+<script>
+(function(){
+  var header=document.querySelector('header');
+  function onScroll(){header.classList.toggle('scrolled',window.scrollY>12)}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el)});
+  }else{els.forEach(function(el){el.classList.add('in')})}
+
+  // Subtle 3D tilt on the hero panel (pointer devices only)
+  var stage=document.getElementById('stage'),panel=document.getElementById('panel');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(stage&&panel&&!reduce&&window.matchMedia('(hover: hover)').matches){
+    stage.addEventListener('pointermove',function(e){
+      var r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      panel.style.transform='rotateX('+(6-y*10)+'deg) rotateY('+(-8+x*14)+'deg)';
+    });
+    stage.addEventListener('pointerleave',function(){panel.style.transform=''});
+  }
+})();
+</script>
 </body>
 </html>
