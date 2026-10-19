@@ -67,6 +67,34 @@ header.scrolled .nav{background:rgba(23,24,27,.6);border-color:var(--glass-edge)
 .links a:hover{color:var(--white);background:var(--glass-strong)}
 @media(min-width:820px){.links{display:flex}}
 
+/* Mobile menu: hamburger + glass panel */
+header .wrap{position:relative}
+header.menu-open .nav{background:rgba(23,24,27,.72);border-color:var(--glass-edge)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.burger{position:relative;width:44px;height:44px;flex:none;border-radius:50%;border:1px solid var(--glass-edge);background:var(--glass-strong);color:var(--white);cursor:pointer;padding:0;transition:background .2s,border-color .2s}
+.burger:hover{border-color:var(--fg)}
+.burger span{position:absolute;left:13px;width:18px;height:1.6px;border-radius:2px;background:currentColor;transition:transform .35s var(--ease),opacity .2s,top .35s var(--ease)}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){top:21px;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(.2)}
+.burger[aria-expanded="true"] span:nth-child(3){top:21px;transform:rotate(-45deg)}
+.menu{position:absolute;top:calc(100% + 10px);left:22px;right:22px;padding:14px;border-radius:var(--r-lg);
+  opacity:0;visibility:hidden;transform:translateY(-10px) scale(.98);transform-origin:top right;
+  transition:opacity .3s var(--ease),transform .35s var(--ease),visibility 0s linear .35s;
+  background:linear-gradient(160deg,rgba(23,24,27,.88),rgba(16,17,19,.82))}
+.menu.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s var(--ease),transform .35s var(--ease),visibility 0s}
+.menu ul{list-style:none;margin:0;padding:0}
+.menu li+li{border-top:1px solid var(--line)}
+.menu ul a{display:flex;align-items:center;justify-content:space-between;padding:16px 14px;font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;border-radius:14px;transition:background .2s}
+.menu ul a:hover{background:var(--glass-strong)}
+.menu ul a span{font-family:var(--sans);font-size:11px;letter-spacing:.2em;color:var(--muted)}
+.menu .btn{margin-top:14px}
+.menu.open li{animation:menuIn .45s var(--ease) both}
+.menu.open li:nth-child(2){animation-delay:.04s}.menu.open li:nth-child(3){animation-delay:.08s}.menu.open li:nth-child(4){animation-delay:.12s}
+@keyframes menuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(max-width:419px){.nav-actions .btn{display:none}}
+@media(min-width:820px){.burger,.menu{display:none}}
+
 /* ---------- Buttons: pill shaped ---------- */
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--white);color:var(--bg);text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:14px 26px;border-radius:var(--pill);border:1px solid var(--white);
   box-shadow:0 10px 30px -10px rgba(255,255,255,.35),inset 0 -2px 0 rgba(0,0,0,.08);
@@ -218,7 +246,19 @@ footer p{max-width:70ch;margin:0 0 10px}
         <li><a href="#start">Where it starts</a></li>
         <li><a href="#risk">Risk</a></li>
       </ul>
-      <a class="btn sm" href="#contact">Contact</a>
+      <div class="nav-actions">
+        <a class="btn sm" href="#contact">Contact</a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+    <nav class="menu glass" id="mobile-menu" aria-label="Mobile">
+      <ul>
+        <li><a href="#about">About <span>01</span></a></li>
+        <li><a href="#how">How it works <span>02</span></a></li>
+        <li><a href="#start">Where it starts <span>03</span></a></li>
+        <li><a href="#risk">Risk <span>04</span></a></li>
+      </ul>
+      <a class="btn block" href="#contact">Contact <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
     </nav>
   </div>
 </header>
@@ -373,6 +413,24 @@ footer p{max-width:70ch;margin:0 0 10px}
   var header=document.querySelector('header');
   function onScroll(){header.classList.toggle('scrolled',window.scrollY>12)}
   onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  // Mobile menu
+  var burger=header.querySelector('.burger'),menu=document.getElementById('mobile-menu');
+  function setMenu(open,restoreFocus){
+    burger.setAttribute('aria-expanded',open);
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    menu.classList.toggle('open',open);
+    header.classList.toggle('menu-open',open);
+    if(open){menu.querySelector('a').focus({preventScroll:true})}
+    else if(restoreFocus){burger.focus()}
+  }
+  function isOpen(){return burger.getAttribute('aria-expanded')==='true'}
+  burger.addEventListener('click',function(){setMenu(!isOpen())});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
+  document.addEventListener('click',function(e){if(isOpen()&&!header.contains(e.target))setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen())setMenu(false,true)});
+  header.addEventListener('focusout',function(e){if(isOpen()&&e.relatedTarget&&!header.contains(e.relatedTarget))setMenu(false)});
+  window.matchMedia('(min-width: 820px)').addEventListener('change',function(m){if(m.matches)setMenu(false)});
 
   var els=document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
